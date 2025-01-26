@@ -9,4 +9,8 @@ export default defineConfig({
       plugins: [tailwindcss()],
     },
   },
+ 
+    base: "/VV-Portfolio/",
+   
+  
 });
