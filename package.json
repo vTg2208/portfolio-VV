@@ -43,7 +43,5 @@
     "vite": "^6.0.5",
     "vite-plugin-gh-pages": "^1.0.1"
   },
-  {
   "homepage": "https://vtg2208.github.io/portfolio-VV/"
-  }
 }
