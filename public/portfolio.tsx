@@ -259,13 +259,13 @@ const Portfolio: React.FC = () => {
               </div>
               <div className="flex items-center space-x-4">
                 <ArrowUpRight className="text-blue-500" size={20} />
-                <a href="https://github.com/dummy" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white underline">
+                <a href="https://github.com/vTg2208" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white underline">
                   GitHub Profile
                 </a>
               </div>
               <div className="flex items-center space-x-4">
                 <ArrowUpRight className="text-blue-500" size={20} />
-                <a href="https://linkedin.com/in/dummy" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white underline">
+                <a href="https://www.linkedin.com/in/vishnu-vardhan-theegela-486710290/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white underline">
                   LinkedIn Profile
                 </a>
               </div>
