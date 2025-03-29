@@ -126,7 +126,6 @@ const Portfolio: React.FC = () => {
       link: 'https://vTg2208.github.io/travel-buddy'
     }
   ];
-
   // Smooth scroll function for navigation links
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, sectionId: string) => {
     e.preventDefault();
