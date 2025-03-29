@@ -49,16 +49,9 @@ Welcome to **Portfolio-VV**, the personal portfolio website of T Vishnu Vardhan.
    ```
    The optimized files will be in the `dist/` directory.
 
-## 🌐 Deployment
-
-1. **GitHub Pages**:
-   - Build the project using `npm run build`.
-   - Deploy the contents of the `dist/` folder to the `gh-pages` branch.
-   - Enable GitHub Pages in the repository settings.
-
 ## ✨ Live Demo
 
-Experience the live version of this portfolio here: [Portfolio-VV Live Demo](https://vtg2208.github.io/portfolio-VV/)
+Experience the live version of this portfolio here: [VV-Verse](https://vtg2208.github.io/portfolio-VV/)
 
 ## 🤝 Contributions
 
