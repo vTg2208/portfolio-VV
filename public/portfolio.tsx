@@ -111,13 +111,19 @@ const Portfolio: React.FC = () => {
       name: 'AmritaAttend',
       description: 'Attendance for faculty at Amrita Vishwa Vidyapeetham using phone fingerprint authentication.',
       tech: ['React', 'Node.js', 'Express', 'PostgreSQL','Flutter'],
-      link: 'https://github.com/vTg2208/AmritaAttend'
+      link: 'https://vTg2208.github.io/AmritaAttend'
     },
     {
       name: 'VV-Verse',
       description: 'My personal portfolio showcasing my academic journey and expertise at Amrita Vishwa Vidyapeetham.',
       "tech": ["TypeScript", "Node.js", "Vite", "React", "Tailwind CSS"],
-      link: 'https://github.com/vTg2208/portfolio-VV'
+      link: 'https://vTg2208.github.io/portfolio-VV'
+    },
+    {
+      name: 'Travel Buddy',
+      description: 'AI-powered travel recommendation assistant that provides personalized destination suggestions and trip planning insights.',
+      "tech": ["Google Gemini API", "Express", "Heroicons", "React", "Tailwind CSS"],
+      link: 'https://vTg2208.github.io/travel-buddy'
     }
   ];
 
