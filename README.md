@@ -23,27 +23,6 @@ Welcome to **Portfolio-VV**, the personal portfolio website of T Vishnu Vardhan.
   - [Git](https://git-scm.com/): For source code management.
   - [GitHub](https://github.com/): For repository hosting and collaboration.
 
-## 📂 Project Structure
-
-```
-portfolio-VV/
-├── dist/                   # Production build output
-├── public/                 # Static assets
-│   └── ...
-├── src/
-│   ├── components/         # Reusable React components
-│   │   └── ui/             # UI-specific components
-│   │       └── ...
-│   ├── App.tsx             # Main application component
-│   ├── main.tsx            # Application entry point
-│   └── ...
-├── .gitignore              # Git ignore rules
-├── index.html              # Main HTML template
-├── package.json            # Project metadata and dependencies
-├── tailwind.config.js      # Tailwind CSS configuration
-├── tsconfig.json           # TypeScript configuration
-└── vite.config.ts          # Vite configuration
-```
 
 ## 💻 Setup Instructions
 
@@ -76,10 +55,6 @@ portfolio-VV/
    - Build the project using `npm run build`.
    - Deploy the contents of the `dist/` folder to the `gh-pages` branch.
    - Enable GitHub Pages in the repository settings.
-
-2. **Vercel**:
-   - Connect your repository to [Vercel](https://vercel.com/).
-   - Deploy automatically with every push to the `main` branch.
 
 ## ✨ Live Demo
 
