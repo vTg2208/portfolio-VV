@@ -47,11 +47,11 @@ Welcome to **Portfolio-VV**, the personal portfolio website of T Vishnu Vardhan.
    ```bash
    npm run build
    ```
-   The optimized files will be in the `dist/` directory.
 
 ## ✨ Live Demo
 
-Experience the live version of this portfolio here: [VV-Verse](https://vtg2208.github.io/portfolio-VV/)
+Experience the live version of this portfolio here:
+ [VV-Verse](https://vtg2208.github.io/portfolio-VV/)
 
 ## 🤝 Contributions
 
