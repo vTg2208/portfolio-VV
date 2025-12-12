@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChevronDown, Code, Rocket, BrainCircuit } from 'lucide-react';
-import { AnimatedBackground } from '../common/AnimatedBackground';
+import { GridScanBackground } from '../common/GridScanBackground';
 import { InteractiveTerminal } from '../interactive/InteractiveTerminal';
 import { ThemeStyles } from '../../types';
 import { scrollToSection } from '../../utils';
@@ -18,7 +18,7 @@ export const Hero: React.FC<HeroProps> = ({ themeStyles, scrollY, isDarkMode }) 
       className={`min-h-screen flex flex-col relative overflow-hidden ${themeStyles.background}`}
       style={{ transform: `translateY(${Math.min(scrollY * 0.5, 100)}px)` }}
     >
-      <AnimatedBackground />
+      <GridScanBackground />
       
       {/* Top Section - Name and Subtitle */}
       <div className="relative z-10 pt-24 pb-8">
