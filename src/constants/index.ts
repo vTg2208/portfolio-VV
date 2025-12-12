@@ -51,9 +51,9 @@ export const CONTACT_INFO = {
 };
 
 export const GLASS_STYLES = {
-  card: 'backdrop-blur-md bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10 shadow-xl shadow-black/20 rounded-xl',
-  navbar: 'backdrop-blur-lg bg-white/5 dark:bg-black/5 border-b border-white/10',
-  button: 'backdrop-blur-sm bg-white/20 hover:bg-white/30 border border-white/30'
+  card: 'backdrop-blur-md bg-white/10 dark:bg-slate-900/50 border border-white/20 dark:border-slate-700/50 shadow-xl shadow-black/20 rounded-xl',
+  navbar: 'backdrop-blur-lg bg-white/5 dark:bg-slate-950/80 border-b border-white/10 dark:border-slate-800',
+  button: 'backdrop-blur-sm bg-white/20 hover:bg-white/30 dark:bg-slate-800/50 dark:hover:bg-slate-700/50 border border-white/30 dark:border-slate-700'
 };
 
 export const SKILL_LEVELS = {

@@ -43,7 +43,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     activeSection === item.name.toLowerCase()
                       ? `${themeStyles.navActiveBackground} ${themeStyles.navActiveText}`
-                      : `${themeStyles.navText} hover:bg-gray-700`
+                      : `${themeStyles.navText} hover:bg-slate-800/50`
                   }`}
                   aria-current={activeSection === item.name.toLowerCase() ? 'page' : undefined}
                 >

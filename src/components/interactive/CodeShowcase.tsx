@@ -110,7 +110,7 @@ export const ContactForm: React.FC<ContactProps> = ({ onSubmit }) => {
       </div>
 
       {/* File Tabs */}
-      <div className="bg-gray-800 border-b border-gray-700 px-4 flex space-x-1">
+      <div className="bg-slate-800 border-b border-slate-700 px-4 flex space-x-1">
         {Object.keys(codeFiles).map((fileName) => (
           <button
             key={fileName}
@@ -118,8 +118,8 @@ export const ContactForm: React.FC<ContactProps> = ({ onSubmit }) => {
             className={`
               px-4 py-2 text-sm rounded-t-lg transition-colors relative
               ${activeFile === fileName 
-                ? 'bg-gray-900 text-white border-t-2 border-blue-500' 
-                : 'text-gray-400 hover:text-white hover:bg-gray-700'
+                ? 'bg-slate-900 text-white border-t-2 border-blue-500' 
+                : 'text-slate-400 hover:text-white hover:bg-slate-700'
               }
             `}
           >
@@ -140,7 +140,7 @@ export const ContactForm: React.FC<ContactProps> = ({ onSubmit }) => {
               flex items-center space-x-2 px-3 py-1 rounded 
               ${copiedFile === activeFile 
                 ? 'bg-green-600 text-white' 
-                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
               } 
               transition-colors text-sm
             `}
@@ -159,7 +159,7 @@ export const ContactForm: React.FC<ContactProps> = ({ onSubmit }) => {
           </button>
         </div>
 
-        <pre className="bg-gray-900 p-6 text-sm overflow-x-auto text-gray-300 leading-relaxed">
+        <pre className="bg-slate-900 p-6 text-sm overflow-x-auto text-slate-300 leading-relaxed">
           <code className="language-typescript">
             {codeFiles[activeFile as keyof typeof codeFiles]}
           </code>

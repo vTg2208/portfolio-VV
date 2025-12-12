@@ -75,15 +75,16 @@ export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
       canvas.width * 0.8
     );
 
-    // Dynamic colors based on time and mouse position
-    const hue1 = (time * 20 + mousePosition.x * 60) % 360;
-    const hue2 = (time * 30 + mousePosition.y * 80 + 120) % 360;
-    const hue3 = (time * 25 + (mousePosition.x + mousePosition.y) * 40 + 240) % 360;
+    // Dynamic colors based on time and mouse position - More subtle/authentic palette
+    const hue1 = (time * 10 + mousePosition.x * 30 + 200) % 360; // Blue-ish base
+    const hue2 = (time * 15 + mousePosition.y * 40 + 240) % 360; // Purple-ish base
+    const hue3 = (time * 12 + (mousePosition.x + mousePosition.y) * 20 + 280) % 360; // Violet base
 
-    gradient.addColorStop(0, `hsla(${hue1}, 70%, 60%, 0.3)`);
-    gradient.addColorStop(0.4, `hsla(${hue2}, 70%, 50%, 0.2)`);
-    gradient.addColorStop(0.8, `hsla(${hue3}, 70%, 40%, 0.1)`);
-    gradient.addColorStop(1, 'hsla(220, 70%, 30%, 0)');
+    // Reduced saturation and opacity for a more premium look
+    gradient.addColorStop(0, `hsla(${hue1}, 40%, 50%, 0.15)`);
+    gradient.addColorStop(0.4, `hsla(${hue2}, 30%, 40%, 0.1)`);
+    gradient.addColorStop(0.8, `hsla(${hue3}, 20%, 30%, 0.05)`);
+    gradient.addColorStop(1, 'hsla(220, 20%, 10%, 0)');
 
     // Clear and draw
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -99,11 +100,11 @@ export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
     <>
       {/* CSS-based animated mesh background */}
       <div className={`absolute inset-0 overflow-hidden ${className}`}>
-        {/* Floating gradient orbs */}
+        {/* Floating gradient orbs - Deeper, richer colors */}
         <div className="absolute inset-0">
           {/* Orb 1 */}
           <div 
-            className="absolute w-96 h-96 bg-gradient-to-r from-blue-400/30 to-purple-600/30 rounded-full blur-3xl animate-pulse"
+            className="absolute w-96 h-96 bg-gradient-to-r from-indigo-500/20 to-purple-900/20 rounded-full blur-3xl animate-pulse"
             style={{
               top: '10%',
               left: '10%',
@@ -114,7 +115,7 @@ export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
           
           {/* Orb 2 */}
           <div 
-            className="absolute w-80 h-80 bg-gradient-to-r from-pink-400/25 to-red-600/25 rounded-full blur-3xl animate-pulse"
+            className="absolute w-80 h-80 bg-gradient-to-r from-violet-500/15 to-fuchsia-900/15 rounded-full blur-3xl animate-pulse"
             style={{
               top: '60%',
               right: '10%',
@@ -126,7 +127,7 @@ export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
           
           {/* Orb 3 */}
           <div 
-            className="absolute w-72 h-72 bg-gradient-to-r from-green-400/20 to-blue-600/20 rounded-full blur-3xl animate-pulse"
+            className="absolute w-72 h-72 bg-gradient-to-r from-cyan-500/10 to-blue-900/10 rounded-full blur-3xl animate-pulse"
             style={{
               bottom: '20%',
               left: '50%',
