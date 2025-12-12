@@ -2,6 +2,7 @@ import React from 'react';
 import { ChevronDown, Code, Rocket, BrainCircuit } from 'lucide-react';
 import { GridScanBackground } from '../common/GridScanBackground';
 import { InteractiveTerminal } from '../interactive/InteractiveTerminal';
+import { FlipText } from '../ui/FlipText';
 import { ThemeStyles } from '../../types';
 import { scrollToSection } from '../../utils';
 
@@ -12,6 +13,8 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ themeStyles, scrollY, isDarkMode }) => {
+  const roles = ['Problem Solver', 'Code Enthusiast', 'Tech Explorer'];
+
   return (
     <section 
       id="home" 
@@ -27,22 +30,28 @@ export const Hero: React.FC<HeroProps> = ({ themeStyles, scrollY, isDarkMode }) 
             Vishnu Vardhan Theegela
           </h1>
           
-          {/* <p className={`text-xl md:text-2xl ${isDarkMode ? themeStyles.secondaryText : 'text-gray-800'} mb-4`}>
-            CSE Undergrad from Amrita Vishwa Vidyapeetham
-          </p> */}
-
-          {/* Quick intro badges */}
-          {/* <div className="flex justify-center space-x-4 flex-wrap">
-            <span className="bg-blue-600/20 text-blue-400 px-3 py-1 rounded-full text-sm">
-              Problem Solver
+          {/* Animated role text */}
+          <div className="text-xl md:text-2xl mb-4 flex items-center justify-center gap-2">
+            <span className={`${isDarkMode ? themeStyles.secondaryText : 'text-gray-800'}`}>
+              I'm a
             </span>
-            <span className="bg-purple-600/20 text-purple-400 px-3 py-1 rounded-full text-sm">
-              Code Enthusiast
-            </span>
-            <span className="bg-pink-600/20 text-pink-400 px-3 py-1 rounded-full text-sm">
-              Tech Explorer
-            </span>
-          </div> */}
+            <div className={`
+              px-4 py-2.5 rounded-2xl min-w-[180px] inline-flex items-center justify-center
+              backdrop-blur-xl
+              ${isDarkMode 
+                ? 'bg-white/5 border border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.37)]' 
+                : 'bg-white/90 border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]'
+              }
+              hover:shadow-[0_12px_40px_0_rgba(59,130,246,0.3)] hover:border-blue-400/50 transition-all duration-300
+            `}>
+              <FlipText
+                words={roles}
+                interval={2500}
+                textClassName="font-semibold text-lg bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text"
+                animationDuration={600}
+              />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -73,34 +82,6 @@ export const Hero: React.FC<HeroProps> = ({ themeStyles, scrollY, isDarkMode }) 
               <span>View Projects</span>
             </a>
           </div>
-
-          {/* Feature Grid */}
-          <div className="grid grid-cols-3 gap-6 mb-8">
-            <div className={`p-4 border ${themeStyles.cardBorder} rounded-lg ${themeStyles.cardBackground} backdrop-blur flex flex-col items-center text-center`}>
-                <Rocket className={`${isDarkMode ? 'text-blue-500' : 'text-blue-600'} mx-auto mb-2`} size={32} />
-                <p className={`${themeStyles.secondaryText} text-sm font-medium`}>Problem Solver</p>
-            </div>
-            <div className={`p-4 border ${themeStyles.cardBorder} rounded-lg ${themeStyles.cardBackground} backdrop-blur flex flex-col items-center text-center`}>
-                <Code className={`${isDarkMode ? 'text-purple-500' : 'text-purple-600'} mx-auto mb-2`} size={32} />
-                <p className={`${themeStyles.secondaryText} text-sm font-medium`}>Code Enthusiast</p>
-            </div>
-            <div className={`p-4 border ${themeStyles.cardBorder} rounded-lg ${themeStyles.cardBackground} backdrop-blur flex flex-col items-center text-center`}>
-                <BrainCircuit className={`${isDarkMode ? 'text-pink-500' : 'text-pink-600'} mx-auto mb-2`} size={32} />
-                <p className={`${themeStyles.secondaryText} text-sm font-medium`}>Tech Explorer</p>
-            </div>
-          </div>
-
-          {/* Scroll Indicator */}
-          {scrollY < 100 && (
-            <div className="flex justify-center">
-              <div className="animate-bounce">
-                <div className="flex flex-col items-center">
-                  <ChevronDown size={24} className="text-blue-500" strokeWidth={3} />
-                  <ChevronDown size={24} className="text-blue-400 -mt-3" strokeWidth={3} />
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </section>
