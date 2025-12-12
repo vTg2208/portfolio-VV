@@ -15,13 +15,34 @@ interface TerminalLine {
 }
 
 export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ themeStyles, isDarkMode }) => {
-  const [history, setHistory] = useState<TerminalLine[]>([
-    { text: 'Welcome to Vishnu\'s Portfolio Terminal! Type "help" to see available commands.', type: 'output' }
-  ]);
+  const [history, setHistory] = useState<TerminalLine[]>([]);
   const [currentInput, setCurrentInput] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
+  const [isTyping, setIsTyping] = useState(true);
+  const [typedText, setTypedText] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
+
+  const welcomeMessage = 'Welcome to Vishnu\'s Portfolio Terminal! Type "help" to see available commands.';
+
+  // Typing animation effect
+  useEffect(() => {
+    let currentIndex = 0;
+    const typingSpeed = 50; // milliseconds per character
+
+    const typeNextChar = () => {
+      if (currentIndex < welcomeMessage.length) {
+        setTypedText(welcomeMessage.slice(0, currentIndex + 1));
+        currentIndex++;
+        setTimeout(typeNextChar, typingSpeed);
+      } else {
+        setIsTyping(false);
+        // Add the welcome message to history once typing is complete
+        setHistory([{ text: welcomeMessage, type: 'output' }]);
+      }
+    };
+
+    typeNextChar();
+  }, []);
 
   // Available commands
   const commands = {
@@ -190,6 +211,14 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ themeS
         className="p-4 font-mono text-sm h-80 overflow-y-auto cursor-text"
         onClick={handleTerminalClick}
       >
+        {/* Typing Animation for Welcome Message */}
+        {isTyping && (
+          <div className={`${isDarkMode ? 'text-gray-300' : 'text-gray-900'} whitespace-pre-wrap break-words`}>
+            {typedText}
+            <span className="animate-pulse">|</span>
+          </div>
+        )}
+
         {/* Command History */}
         <div className="space-y-1">
           {history.map((line, index) => (
@@ -200,23 +229,25 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ themeS
         </div>
 
         {/* Current Input Line */}
-        <form onSubmit={handleSubmit} className="flex items-center mt-2">
-          <span className="text-green-400 mr-2">visitor@portfolio:~$</span>
-          <input
-            ref={inputRef}
-            type="text"
-            value={currentInput}
-            onChange={handleInputChange}
-            className={`
-              flex-1 bg-transparent outline-none
-              ${isDarkMode ? 'text-gray-300' : 'text-gray-900'}
-              caret-green-400
-            `}
-            placeholder="Type a command..."
-            autoFocus
-          />
-          <span className="animate-pulse text-green-400 ml-1">|</span>
-        </form>
+        {!isTyping && (
+          <form onSubmit={handleSubmit} className="flex items-center mt-2">
+            <span className="text-green-400 mr-2">visitor@portfolio:~$</span>
+            <input
+              ref={inputRef}
+              type="text"
+              value={currentInput}
+              onChange={handleInputChange}
+              className={`
+                flex-1 bg-transparent outline-none
+                ${isDarkMode ? 'text-gray-300' : 'text-gray-900'}
+                caret-green-400
+              `}
+              placeholder="Type a command..."
+              autoFocus
+            />
+            <span className="animate-pulse text-green-400 ml-1">|</span>
+          </form>
+        )}
       </div>
 
       {/* Quick Command Buttons (Optional) */}
