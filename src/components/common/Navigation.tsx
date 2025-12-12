@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 import { ThemeStyles } from '../../types';
 import { NAVIGATION_ITEMS } from '../../constants';
 import { scrollToSection } from '../../utils';
+import {
+  Navbar,
+  NavBody,
+  NavItems,
+  MobileNav,
+  NavbarLogo,
+  MobileNavToggle,
+  MobileNavMenu,
+} from '../ui/ResizableNavbar';
 
 interface NavigationProps {
   activeSection: string;
@@ -24,75 +32,52 @@ export const Navigation: React.FC<NavigationProps> = ({
     scrollToSection(e, sectionId, () => setIsMenuOpen(false));
   };
 
+  const navItems = NAVIGATION_ITEMS.map(item => ({
+    name: item.name,
+    link: item.href
+  }));
+
   return (
-    <nav className={`fixed w-full ${themeStyles.navBackground} backdrop-blur z-50 transition-colors duration-300`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0">
-            <span className="text-xl font-bold">VTG</span>
-          </div>
-          
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center">
-            <div className="flex space-x-4 mr-4">
-              {NAVIGATION_ITEMS.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.name.toLowerCase())}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    activeSection === item.name.toLowerCase()
-                      ? `${themeStyles.navActiveBackground} ${themeStyles.navActiveText}`
-                      : `${themeStyles.navText} hover:bg-slate-800/50`
-                  }`}
-                  aria-current={activeSection === item.name.toLowerCase() ? 'page' : undefined}
-                >
-                  {item.name}
-                </a>
-              ))}
+    <Navbar>
+      <NavBody>
+        <NavbarLogo>
+            <span className="text-xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text">VTG</span>
+        </NavbarLogo>
+        
+        <NavItems 
+            items={navItems} 
+            activeItem={activeSection} 
+            onItemClick={handleNavClick} 
+        />
+
+        <div className="hidden md:flex items-center gap-3">
+            <ThemeToggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+        </div>
+
+        <MobileNav>
+            <div className="mr-2">
+                <ThemeToggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
             </div>
+            <MobileNavToggle isOpen={isMenuOpen} onClick={() => setIsMenuOpen(!isMenuOpen)} />
+        </MobileNav>
+      </NavBody>
 
-            <ThemeToggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-          </div>
-
-          {/* Mobile menu button and theme toggle */}
-          <div className="md:hidden flex items-center space-x-2">
-            <ThemeToggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-            
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-md text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-              aria-expanded={isMenuOpen}
-              aria-label="Toggle menu"
+      <MobileNavMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)}>
+        {navItems.map((item) => (
+            <a
+            key={item.name}
+            href={item.link}
+            onClick={(e) => handleNavClick(e, item.name.toLowerCase())}
+            className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors ${
+                activeSection === item.name.toLowerCase()
+                ? "bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white"
+                : "text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900"
+            }`}
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {NAVIGATION_ITEMS.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                onClick={(e) => handleNavClick(e, item.name.toLowerCase())}
-                className={`block px-3 py-2 rounded-md text-base font-medium ${
-                  activeSection === item.name.toLowerCase()
-                    ? `${themeStyles.navActiveBackground} ${themeStyles.navActiveText}`
-                    : `${themeStyles.navText} hover:bg-gray-700 dark:hover:bg-gray-700 hover:text-white`
-                }`}
-                aria-current={activeSection === item.name.toLowerCase() ? 'page' : undefined}
-              >
-                {item.name}
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
-    </nav>
+            {item.name}
+            </a>
+        ))}
+      </MobileNavMenu>
+    </Navbar>
   );
 };
