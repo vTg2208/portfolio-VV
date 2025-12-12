@@ -17,7 +17,6 @@ export const FlipText: React.FC<FlipTextProps> = ({
   animationDuration = 700,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [width, setWidth] = useState('auto');
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -32,15 +31,18 @@ export const FlipText: React.FC<FlipTextProps> = ({
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
-          initial={{ rotateX: 90, opacity: 0 }}
-          animate={{ rotateX: 0, opacity: 1 }}
-          exit={{ rotateX: -90, opacity: 0 }}
+          initial={{ rotateX: 90, rotateY: -15, opacity: 0, y: 20 }}
+          animate={{ rotateX: 0, rotateY: 0, opacity: 1, y: 0 }}
+          exit={{ rotateX: -90, rotateY: 15, opacity: 0, y: -20 }}
           transition={{
             duration: animationDuration / 1000,
-            ease: 'easeInOut',
+            ease: [0.4, 0.0, 0.2, 1],
           }}
           className={`inline-block ${textClassName}`}
-          style={{ perspective: '1000px' }}
+          style={{ 
+            perspective: '1000px',
+            transformStyle: 'preserve-3d'
+          }}
         >
           {words[currentIndex]}
         </motion.div>
