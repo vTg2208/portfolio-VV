@@ -186,9 +186,9 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ themeS
   };
 
   return (
-    <div className={`border ${themeStyles.cardBorder} rounded-lg overflow-hidden ${themeStyles.heroTerminal} backdrop-blur transition-colors duration-300`}>
+    <div className={`border ${themeStyles.cardBorder} rounded-lg overflow-hidden backdrop-blur transition-colors duration-300 ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
       {/* Terminal Header */}
-      <div className={`flex items-center justify-between px-4 py-2 border-b ${themeStyles.cardBorder} ${isDarkMode ? 'bg-gray-800/50' : 'bg-gray-100/80'}`}>
+      <div className={`flex items-center justify-between px-4 py-2 border-b ${themeStyles.cardBorder} ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
         <div className="flex items-center space-x-2">
           <div className="flex space-x-2">
             <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -251,7 +251,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ themeS
       </div>
 
       {/* Quick Command Buttons (Optional) */}
-      <div className={`px-4 py-2 border-t ${themeStyles.cardBorder} ${isDarkMode ? 'bg-gray-800/30' : 'bg-gray-50/80'}`}>
+      <div className={`px-4 py-2 border-t ${themeStyles.cardBorder} ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
         <div className="flex flex-wrap gap-2">
           {['help', 'skills', 'projects','blogs', 'contact'].map((cmd) => (
             <button

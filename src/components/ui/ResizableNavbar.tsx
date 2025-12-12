@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef, useEffect } from 'react';
+import { motion, useScroll, useMotionValueEvent, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 export const Navbar = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -46,6 +46,45 @@ export const NavbarLogo = ({ children, className = "" }: { children?: React.Reac
     )
 }
 
+const DockItem = ({ 
+    item, 
+    isActive, 
+    onItemClick,
+    mouseX
+}: { 
+    item: { name: string; link: string }; 
+    isActive: boolean;
+    onItemClick?: (e: React.MouseEvent<HTMLAnchorElement>, link: string) => void;
+    mouseX: any;
+}) => {
+    const ref = useRef<HTMLAnchorElement>(null);
+    
+    const distance = useTransform(mouseX, (val: number) => {
+        const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
+        return val - bounds.x - bounds.width / 2;
+    });
+
+    const scaleSync = useTransform(distance, [-100, 0, 100], [1, 1.15, 1]);
+    const scale = useSpring(scaleSync, { mass: 0.1, stiffness: 200, damping: 15 });
+
+    return (
+        <motion.a
+            ref={ref}
+            href={item.link}
+            onClick={(e) => onItemClick && onItemClick(e, item.name.toLowerCase())}
+            style={{ scale }}
+            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                isActive
+                ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900"
+                : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white"
+            }`}
+            aria-current={isActive ? 'page' : undefined}
+        >
+            {item.name}
+        </motion.a>
+    );
+};
+
 export const NavItems = ({ 
     items, 
     activeItem, 
@@ -55,28 +94,28 @@ export const NavItems = ({
     activeItem?: string, 
     onItemClick?: (e: React.MouseEvent<HTMLAnchorElement>, link: string) => void 
 }) => {
-  return (
-    <div className="hidden md:flex items-center space-x-1 mx-auto">
-      {items.map((item) => {
-        const isActive = activeItem === item.name.toLowerCase();
-        return (
-            <a
-            key={item.name}
-            href={item.link}
-            onClick={(e) => onItemClick && onItemClick(e, item.name.toLowerCase())}
-            className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
-                isActive
-                ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900"
-                : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white"
-            }`}
-            aria-current={isActive ? 'page' : undefined}
-            >
-            {item.name}
-            </a>
-        );
-      })}
-    </div>
-  );
+    const mouseX = useMotionValue(Infinity);
+
+    return (
+        <div 
+            className="hidden md:flex items-center space-x-2 mx-auto"
+            onMouseMove={(e) => mouseX.set(e.pageX)}
+            onMouseLeave={() => mouseX.set(Infinity)}
+        >
+            {items.map((item) => {
+                const isActive = activeItem === item.name.toLowerCase();
+                return (
+                    <DockItem
+                        key={item.name}
+                        item={item}
+                        isActive={isActive}
+                        onItemClick={onItemClick}
+                        mouseX={mouseX}
+                    />
+                );
+            })}
+        </div>
+    );
 };
 
 export const MobileNav = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {

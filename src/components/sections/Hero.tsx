@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChevronDown, Code, Rocket, BrainCircuit } from 'lucide-react';
-import { GridScanBackground } from '../common/GridScanBackground';
+import { GridScan } from '../common/GridScan';
 import { InteractiveTerminal } from '../interactive/InteractiveTerminal';
 import { FlipText } from '../ui/FlipText';
 import { ThemeStyles } from '../../types';
@@ -21,7 +21,19 @@ export const Hero: React.FC<HeroProps> = ({ themeStyles, scrollY, isDarkMode }) 
       className={`min-h-screen flex flex-col relative overflow-hidden ${themeStyles.background}`}
       style={{ transform: `translateY(${Math.min(scrollY * 0.5, 100)}px)` }}
     >
-      <GridScanBackground />
+      <GridScan 
+        sensitivity={0.55}
+        lineThickness={1}
+        linesColor={isDarkMode ? "#392e4e" : "#d0d0d0"}
+        gridScale={0.1}
+        scanColor={isDarkMode ? "#FF9FFC" : "#9333ea"}
+        scanOpacity={0.4}
+        enablePost
+        bloomIntensity={0.6}
+        chromaticAberration={0.002}
+        noiseIntensity={0.01}
+        style={{ position: 'absolute', inset: 0 }}
+      />
       
       {/* Top Section - Name and Subtitle */}
       <div className="relative z-10 pt-24 pb-8">

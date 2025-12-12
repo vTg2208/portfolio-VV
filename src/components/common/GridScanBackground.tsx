@@ -18,6 +18,8 @@ export const GridScanBackground: React.FC<GridScanBackgroundProps> = ({
 
     let animationFrameId: number;
     let scanLineY = 0;
+    let scanLineX = 0;
+    let direction: 'horizontal' | 'vertical' = 'horizontal';
 
     const updateCanvasSize = () => {
       canvas.width = window.innerWidth;
@@ -33,16 +35,16 @@ export const GridScanBackground: React.FC<GridScanBackgroundProps> = ({
     };
     
     let gridSize = getGridSize();
-    const scanSpeed = 4;
+    const scanSpeed = 3;
     const scanHeight = 150;
 
     const animate = () => {
-      gridSize = getGridSize(); // Update grid size dynamically
+      gridSize = getGridSize();
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Draw grid
-      ctx.strokeStyle = 'rgba(100, 100, 100, 0.15)';
-      ctx.lineWidth = 0.5;
+      ctx.strokeStyle = 'rgba(100, 100, 100, 0.1)';
+      ctx.lineWidth = 1;
 
       // Vertical lines
       for (let x = 0; x <= canvas.width; x += gridSize) {
@@ -60,41 +62,80 @@ export const GridScanBackground: React.FC<GridScanBackgroundProps> = ({
         ctx.stroke();
       }
 
-      // Draw scanning line with gradient
-      const gradient = ctx.createLinearGradient(0, scanLineY - scanHeight / 2, 0, scanLineY + scanHeight / 2);
-      gradient.addColorStop(0, 'rgba(59, 130, 246, 0)');
-      gradient.addColorStop(0.5, 'rgba(59, 130, 246, 0.8)');
-      gradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
+      if (direction === 'horizontal') {
+        // Horizontal scan
+        const gradient = ctx.createLinearGradient(0, scanLineY - scanHeight / 2, 0, scanLineY + scanHeight / 2);
+        gradient.addColorStop(0, 'rgba(59, 130, 246, 0)');
+        gradient.addColorStop(0.3, 'rgba(59, 130, 246, 0.3)');
+        gradient.addColorStop(0.5, 'rgba(59, 130, 246, 0.6)');
+        gradient.addColorStop(0.7, 'rgba(59, 130, 246, 0.3)');
+        gradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
 
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, scanLineY - scanHeight / 2, canvas.width, scanHeight);
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, scanLineY - scanHeight / 2, canvas.width, scanHeight);
 
-      // Highlight grid lines in scan area
-      ctx.strokeStyle = 'rgba(59, 130, 246, 0.6)';
-      ctx.lineWidth = 2;
+        // Highlight horizontal grid lines
+        ctx.strokeStyle = 'rgba(59, 130, 246, 0.8)';
+        ctx.lineWidth = 1.5;
 
-      // Highlighted vertical lines
-      for (let x = 0; x <= canvas.width; x += gridSize) {
-        if (Math.abs((scanLineY % canvas.height) - (x % canvas.height)) < scanHeight) {
+        const startY = Math.max(0, scanLineY - scanHeight / 2);
+        const endY = Math.min(canvas.height, scanLineY + scanHeight / 2);
+        
+        for (let y = startY; y <= endY; y += gridSize) {
+          const distance = Math.abs(y - scanLineY);
+          const intensity = 1 - (distance / (scanHeight / 2));
+          ctx.globalAlpha = intensity * 0.8;
           ctx.beginPath();
-          ctx.moveTo(x, Math.max(0, scanLineY - scanHeight / 2));
-          ctx.lineTo(x, Math.min(canvas.height, scanLineY + scanHeight / 2));
+          ctx.moveTo(0, y);
+          ctx.lineTo(canvas.width, y);
           ctx.stroke();
         }
-      }
+        
+        ctx.globalAlpha = 1;
 
-      // Highlighted horizontal lines
-      for (let y = Math.max(0, scanLineY - scanHeight / 2); y <= Math.min(canvas.height, scanLineY + scanHeight / 2); y += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(canvas.width, y);
-        ctx.stroke();
-      }
+        scanLineY += scanSpeed;
+        if (scanLineY > canvas.height + scanHeight / 2) {
+          scanLineY = -scanHeight / 2;
+          direction = 'vertical';
+          scanLineX = -scanHeight / 2;
+        }
+      } else {
+        // Vertical scan
+        const gradient = ctx.createLinearGradient(scanLineX - scanHeight / 2, 0, scanLineX + scanHeight / 2, 0);
+        gradient.addColorStop(0, 'rgba(59, 130, 246, 0)');
+        gradient.addColorStop(0.3, 'rgba(59, 130, 246, 0.3)');
+        gradient.addColorStop(0.5, 'rgba(59, 130, 246, 0.6)');
+        gradient.addColorStop(0.7, 'rgba(59, 130, 246, 0.3)');
+        gradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
 
-      // Update scan line position
-      scanLineY += scanSpeed;
-      if (scanLineY > canvas.height + scanHeight / 2) {
-        scanLineY = -scanHeight / 2;
+        ctx.fillStyle = gradient;
+        ctx.fillRect(scanLineX - scanHeight / 2, 0, scanHeight, canvas.height);
+
+        // Highlight vertical grid lines
+        ctx.strokeStyle = 'rgba(59, 130, 246, 0.8)';
+        ctx.lineWidth = 1.5;
+
+        const startX = Math.max(0, scanLineX - scanHeight / 2);
+        const endX = Math.min(canvas.width, scanLineX + scanHeight / 2);
+        
+        for (let x = startX; x <= endX; x += gridSize) {
+          const distance = Math.abs(x - scanLineX);
+          const intensity = 1 - (distance / (scanHeight / 2));
+          ctx.globalAlpha = intensity * 0.8;
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, canvas.height);
+          ctx.stroke();
+        }
+        
+        ctx.globalAlpha = 1;
+
+        scanLineX += scanSpeed;
+        if (scanLineX > canvas.width + scanHeight / 2) {
+          scanLineX = -scanHeight / 2;
+          direction = 'horizontal';
+          scanLineY = -scanHeight / 2;
+        }
       }
 
       animationFrameId = requestAnimationFrame(animate);
@@ -115,10 +156,10 @@ export const GridScanBackground: React.FC<GridScanBackgroundProps> = ({
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full"
-        style={{ opacity: 0.5 }}
+        style={{ opacity: 0.6 }}
       />
       {/* Gradient overlay for better text readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/5 to-black/20 dark:via-black/10 dark:to-black/40" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10 dark:to-black/30" />
     </div>
   );
 };
