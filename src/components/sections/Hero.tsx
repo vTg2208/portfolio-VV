@@ -49,12 +49,11 @@ export const Hero: React.FC<HeroProps> = ({ themeStyles, scrollY, isDarkMode }) 
             </span>
             <div className={`
               px-4 py-2.5 rounded-2xl min-w-[180px] inline-flex items-center justify-center
-              backdrop-blur-xl
               ${isDarkMode 
-                ? 'bg-white/5 border border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.37)]' 
-                : 'bg-white/90 border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]'
+                ? 'bg-gray-900 border border-gray-700 shadow-lg' 
+                : 'bg-white border border-gray-300 shadow-lg'
               }
-              hover:shadow-[0_12px_40px_0_rgba(59,130,246,0.3)] hover:border-blue-400/50 transition-all duration-300
+              hover:shadow-xl hover:border-blue-400/50 transition-all duration-300
             `}>
               <FlipText
                 words={roles}
