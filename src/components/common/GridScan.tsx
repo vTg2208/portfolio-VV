@@ -20,6 +20,7 @@ uniform float uTilt;
 uniform float uYaw;
 uniform float uLineThickness;
 uniform vec3 uLinesColor;
+uniform float uLinesOpacity;
 uniform vec3 uScanColor;
 uniform float uGridScale;
 uniform float uLineStyle;
@@ -244,7 +245,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     }
 
   float lineVis = lineMask;
-  vec3 gridCol = uLinesColor * lineVis * fade;
+  vec3 gridCol = uLinesColor * lineVis * fade * uLinesOpacity;
   vec3 scanCol = uScanColor * combinedPulse;
   vec3 scanAura = uScanColor * combinedAura;
 
@@ -253,11 +254,11 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
   float n = fract(sin(dot(gl_FragCoord.xy + vec2(iTime * 123.4), vec2(12.9898,78.233))) * 43758.5453123);
   color += (n - 0.5) * uNoise;
   color = clamp(color, 0.0, 1.0);
-  float alpha = clamp(max(lineVis, combinedPulse), 0.0, 1.0);
+  float alpha = clamp(max(lineVis * uLinesOpacity, combinedPulse), 0.0, 1.0);
   float gx = 1.0 - smoothstep(tx * 2.0, tx * 2.0 + aax * 2.0, ax);
   float gy = 1.0 - smoothstep(ty * 2.0, ty * 2.0 + aay * 2.0, ay);
   float halo = max(gx, gy) * fade;
-  alpha = max(alpha, halo * clamp(uBloomOpacity, 0.0, 1.0));
+  alpha = max(alpha, halo * clamp(uBloomOpacity, 0.0, 1.0) * uLinesOpacity);
   fragColor = vec4(color, alpha);
 }
 
@@ -272,6 +273,7 @@ interface GridScanProps {
   sensitivity?: number;
   lineThickness?: number;
   linesColor?: string;
+  linesOpacity?: number;
   scanColor?: string;
   scanOpacity?: number;
   gridScale?: number;
@@ -297,6 +299,7 @@ export const GridScan: React.FC<GridScanProps> = ({
   sensitivity = 0.55,
   lineThickness = 1,
   linesColor = '#392e4e',
+  linesOpacity = 1,
   scanColor = '#FF9FFC',
   scanOpacity = 0.4,
   gridScale = 0.1,
@@ -415,6 +418,7 @@ export const GridScan: React.FC<GridScanProps> = ({
       uYaw: { value: 0 },
       uLineThickness: { value: lineThickness },
       uLinesColor: { value: srgbColor(linesColor) },
+      uLinesOpacity: { value: linesOpacity },
       uScanColor: { value: srgbColor(scanColor) },
       uGridScale: { value: gridScale },
       uLineStyle: { value: lineStyle === 'dashed' ? 1 : lineStyle === 'dotted' ? 2 : 0 },
@@ -577,6 +581,7 @@ export const GridScan: React.FC<GridScanProps> = ({
       const u = m.uniforms;
       u.uLineThickness.value = lineThickness;
       u.uLinesColor.value.copy(srgbColor(linesColor));
+      u.uLinesOpacity.value = linesOpacity;
       u.uScanColor.value.copy(srgbColor(scanColor));
       u.uGridScale.value = gridScale;
       u.uLineStyle.value = lineStyle === 'dashed' ? 1 : lineStyle === 'dotted' ? 2 : 0;
@@ -617,7 +622,8 @@ export const GridScan: React.FC<GridScanProps> = ({
     scanSoftness,
     scanPhaseTaper,
     scanDuration,
-    scanDelay
+    scanDelay,
+    linesOpacity
   ]);
 
   return (

@@ -2,6 +2,7 @@ import React from 'react';
 import { ChevronDown, Code, Rocket, BrainCircuit } from 'lucide-react';
 import { GridScan } from '../common/GridScan';
 import { InteractiveTerminal } from '../interactive/InteractiveTerminal';
+import GlassSurface from '../ui/GlassSurface';
 import { FlipText } from '../ui/FlipText';
 import { ThemeStyles } from '../../types';
 import { scrollToSection } from '../../utils';
@@ -25,6 +26,7 @@ export const Hero: React.FC<HeroProps> = ({ themeStyles, scrollY, isDarkMode }) 
         sensitivity={0.55}
         lineThickness={1}
         linesColor={isDarkMode ? "#392e4e" : "#d0d0d0"}
+        linesOpacity={isDarkMode ? 1 : 0}
         gridScale={0.1}
         scanColor={isDarkMode ? "#FF9FFC" : "#9333ea"}
         scanOpacity={0.4}
@@ -47,21 +49,21 @@ export const Hero: React.FC<HeroProps> = ({ themeStyles, scrollY, isDarkMode }) 
             <span className={`${isDarkMode ? themeStyles.secondaryText : 'text-gray-800'}`}>
               I'm a
             </span>
-            <div className={`
-              px-4 py-2.5 rounded-2xl min-w-[180px] inline-flex items-center justify-center
-              ${isDarkMode 
-                ? 'bg-gray-900 border border-gray-700 shadow-lg' 
-                : 'bg-white border border-gray-300 shadow-lg'
-              }
-              hover:shadow-xl hover:border-blue-400/50 transition-all duration-300
-            `}>
+            <GlassSurface
+              borderRadius={35}
+              borderWidth={0.1}
+              backgroundOpacity={0}
+              opacity={0}
+              width="auto"
+              height="auto"
+              className="px-4 py-2.5 min-w-[180px] inline-flex items-center justify-center border-2 border-white/10 hover:border-blue-400/60 transition-all duration-300"
+            >
               <FlipText
                 words={roles}
                 interval={2500}
-                textClassName="font-semibold text-lg bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text"
                 animationDuration={600}
               />
-            </div>
+            </GlassSurface>
           </div>
         </div>
       </div>
