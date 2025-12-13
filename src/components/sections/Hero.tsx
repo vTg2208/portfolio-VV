@@ -32,7 +32,10 @@ export const Hero: React.FC<HeroProps> = ({ themeStyles, scrollY, isDarkMode }) 
       {/* Top Section - Name and Subtitle */}
       <div className="relative z-10 pt-24 pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text leading-tight py-3">
+          <h1 
+            className={`text-5xl md:text-7xl font-black mb-5 font-playwrite leading-tight py-3 ${isDarkMode ? 'text-blue-600' : 'text-blue-600'}`}
+            style={{ WebkitTextStroke: '3px currentColor' }}
+          >
             Vishnu Vardhan Theegela
           </h1>
           

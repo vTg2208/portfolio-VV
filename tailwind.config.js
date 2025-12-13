@@ -11,6 +11,7 @@ export default {
         'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
         'heading': ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
         'mono': ['JetBrains Mono', 'Fira Code', 'Consolas', 'monospace'],
+        'playwrite': ['PlaywriteHR', 'cursive', 'sans-serif'],
       },
     },
   },
