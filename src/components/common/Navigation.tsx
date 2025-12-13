@@ -3,15 +3,7 @@ import { ThemeToggle } from './ThemeToggle';
 import { ThemeStyles } from '../../types';
 import { NAVIGATION_ITEMS } from '../../constants';
 import { scrollToSection } from '../../utils';
-import {
-  Navbar,
-  NavBody,
-  NavItems,
-  MobileNav,
-  NavbarLogo,
-  MobileNavToggle,
-  MobileNavMenu,
-} from '../ui/ResizableNavbar';
+import PillNav from '../ui/PillNav';
 
 interface NavigationProps {
   activeSection: string;
@@ -26,58 +18,35 @@ export const Navigation: React.FC<NavigationProps> = ({
   isDarkMode,
   toggleTheme,
 }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
-    scrollToSection(e, sectionId, () => setIsMenuOpen(false));
+    // Remove the '#' if present for the section ID lookup
+    const targetId = sectionId.startsWith('#') ? sectionId.substring(1) : sectionId;
+    scrollToSection(e, targetId);
   };
 
   const navItems = NAVIGATION_ITEMS.map(item => ({
-    name: item.name,
-    link: item.href
+    label: item.name,
+    href: item.href
   }));
 
   return (
-    <Navbar>
-      <NavBody>
-        <NavbarLogo>
-            <span className="text-xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text">VTG</span>
-        </NavbarLogo>
-        
-        <NavItems 
-            items={navItems} 
-            activeItem={activeSection} 
-            onItemClick={handleNavClick} 
+    <div className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
+      <div className="flex items-center gap-4">
+        <PillNav
+          items={navItems}
+          activeHref={`#${activeSection}`}
+          onItemClick={handleNavClick}
+          baseColor={isDarkMode ? '#0f172a' : '#ffffff'}
+          hoverColor={isDarkMode ? '#ffffff' : '#000000'}
+          pillColor={isDarkMode ? '#1e293b' : '#f1f5f9'}
+          pillTextColor={isDarkMode ? '#e2e8f0' : '#334155'}
+          hoveredPillTextColor={isDarkMode ? '#000000' : '#ffffff'}
+          className="shadow-lg rounded-full"
         />
-
-        <div className="hidden md:flex items-center gap-3">
-            <ThemeToggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+        <div className={`p-1 rounded-full ${isDarkMode ? 'bg-slate-900' : 'bg-white'} shadow-lg`}>
+          <ThemeToggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
         </div>
-
-        <MobileNav>
-            <div className="mr-2">
-                <ThemeToggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-            </div>
-            <MobileNavToggle isOpen={isMenuOpen} onClick={() => setIsMenuOpen(!isMenuOpen)} />
-        </MobileNav>
-      </NavBody>
-
-      <MobileNavMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)}>
-        {navItems.map((item) => (
-            <a
-            key={item.name}
-            href={item.link}
-            onClick={(e) => handleNavClick(e, item.name.toLowerCase())}
-            className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors ${
-                activeSection === item.name.toLowerCase()
-                ? "bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white"
-                : "text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900"
-            }`}
-            >
-            {item.name}
-            </a>
-        ))}
-      </MobileNavMenu>
-    </Navbar>
+      </div>
+    </div>
   );
 };
