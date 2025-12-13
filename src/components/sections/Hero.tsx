@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChevronDown, Code, Rocket, BrainCircuit } from 'lucide-react';
-import { GridScan } from '../common/GridScan';
+import DotGrid from '../common/DotGrid';
 import { InteractiveTerminal } from '../interactive/InteractiveTerminal';
 import GlassSurface from '../ui/GlassSurface';
 import { FlipText } from '../ui/FlipText';
@@ -22,19 +22,11 @@ export const Hero: React.FC<HeroProps> = ({ themeStyles, scrollY, isDarkMode }) 
       className={`min-h-screen flex flex-col relative overflow-hidden ${themeStyles.background}`}
       style={{ transform: `translateY(${Math.min(scrollY * 0.5, 100)}px)` }}
     >
-      <GridScan 
-        sensitivity={0.55}
-        lineThickness={1}
-        linesColor={isDarkMode ? "#392e4e" : "#d0d0d0"}
-        linesOpacity={isDarkMode ? 1 : 0}
-        gridScale={0.1}
-        scanColor={isDarkMode ? "#FF9FFC" : "#9333ea"}
-        scanOpacity={0.4}
-        enablePost
-        bloomIntensity={0.6}
-        chromaticAberration={0.002}
-        noiseIntensity={0.01}
-        style={{ position: 'absolute', inset: 0 }}
+      <DotGrid
+        dotSize={5}
+        gap={24}
+        baseColor={isDarkMode ? "#ffffff" : "#000000"}
+        style={{ position: 'absolute', inset: 0, opacity: 0.15 }}
       />
       
       {/* Top Section - Name and Subtitle */}
