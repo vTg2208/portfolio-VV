@@ -94,11 +94,11 @@ const DotGrid: React.FC<DotGridProps> = ({
       ro = new ResizeObserver(buildAndDraw);
       wrapperRef.current && ro.observe(wrapperRef.current);
     } else {
-      window.addEventListener('resize', buildAndDraw);
+      (window as Window).addEventListener('resize', buildAndDraw);
     }
     return () => {
       if (ro) ro.disconnect();
-      else window.removeEventListener('resize', buildAndDraw);
+      else (window as Window).removeEventListener('resize', buildAndDraw);
     };
   }, [buildAndDraw]);
 
