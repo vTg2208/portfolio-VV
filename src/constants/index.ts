@@ -88,6 +88,14 @@ export const BLOG_INFO = {
       date: '2025-05-03',
       readTime: '2 min read',
       tags: ['Machine Learning', 'Deep Learning', 'AI', 'Blog', 'Tech-Made-Chill']
+    },
+    {
+      title: 'Why we went from massive LLMs to SLMs, LMMs, and Agents — and why the “best” model doesn’t exist.',
+      description: 'An exploration of how economic and technical constraints shaped the rise of LLMs, SLMs, multimodal models, and modern AI systems.',
+      url: 'https://medium.com/@theegelavishnuvardhan22/why-we-went-from-massive-llms-to-slms-lmms-and-agents-and-why-the-best-model-doesnt-exist-41d35f4e460b',
+      date: '2025-12-15',
+      readTime: '5 min read',
+      tags: ['Machine Learning', 'Artificial Intelligence', 'AI Engineering', 'AI Infrastructure', 'Large Language Models']
     }
     // Add more blogs as needed
   ]
