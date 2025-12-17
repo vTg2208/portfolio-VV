@@ -50,33 +50,7 @@ export const CONTACT_INFO = {
   linkedin: 'https://www.linkedin.com/in/vishnu-vardhan-theegela-486710290/',
 };
 
-export const GLASS_STYLES = {
-  card: 'backdrop-blur-md bg-white/10 dark:bg-slate-900/50 border border-white/20 dark:border-slate-700/50 shadow-xl shadow-black/20 rounded-xl',
-  navbar: 'backdrop-blur-lg bg-white/5 dark:bg-slate-950/80 border-b border-white/10 dark:border-slate-800',
-  button: 'backdrop-blur-sm bg-white/20 hover:bg-white/30 dark:bg-slate-800/50 dark:hover:bg-slate-700/50 border border-white/30 dark:border-slate-700'
-};
 
-export const SKILL_LEVELS = {
-  'C++': 90,
-  'Java': 85,
-  'Python': 80,
-  'JavaScript': 85,
-  'React': 88,
-  'Node.js': 75,
-  'Git/GitHub': 85,
-  'VS Code': 90,
-  'Communication': 90,
-  'Team Collaboration': 85,
-  'Problem Solving': 92
-};
-
-export const ACHIEVEMENTS = [
-  { name: 'Open Source Contributor', icon: '🏆', unlocked: true, description: 'Contributed to open source projects' },
-  { name: 'React Master', icon: '⚛️', unlocked: true, description: 'Built multiple React applications' },
-  { name: 'Problem Solver', icon: '🧩', unlocked: true, description: 'Solved complex coding challenges' },
-  { name: 'Team Player', icon: '🤝', unlocked: true, description: 'Collaborated effectively in team projects' },
-  { name: 'Innovation Leader', icon: '💡', unlocked: false, description: 'Led innovative tech solutions' }
-];
 
 export const BLOG_INFO = {
   medium_profile: 'https://medium.com/@theegelavishnuvardhan22', // Replace with your actual Medium profile
