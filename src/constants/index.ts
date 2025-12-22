@@ -23,11 +23,12 @@ export const PROJECTS: Project[] = [
     tech: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Flutter'],
     link: 'https://vTg2208.github.io/AmritaAttend'
   },
-  {
-    name: 'VV-Verse',
-    description: 'My personal portfolio showcasing my academic journey and expertise at Amrita Vishwa Vidyapeetham.',
-    tech: ['TypeScript', 'Node.js', 'Vite', 'React', 'Tailwind CSS'],
-    link: 'https://vTg2208.github.io/portfolio-VV'
+   {
+    name: 'Owezy',
+    description:
+      'A comprehensive expense sharing application for group trips with real-time balance tracking, receipt uploads, group chat, and simplified settlements.',
+    tech: ['React','TypeScript','Vite','Tailwind CSS','Node.js','Express','MongoDB','Firebase Authentication'],
+    link: 'https://owezy.vercel.app/'
   },
   {
     name: 'Travel Buddy',
