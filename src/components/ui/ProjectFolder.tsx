@@ -63,7 +63,7 @@ export const ProjectFolder: React.FC<ProjectFolderProps> = ({ project, index, is
           />
 
           {/* Content */}
-          <div className="h-[calc(100%-2rem)] overflow-y-auto p-6 pr-4">
+          <div className="h-[calc(100%-2rem)] p-6 flex flex-col">
             <div className="flex items-center justify-between mb-3">
               <Folder size={32} style={{ color }} />
               <div className="flex gap-2">
@@ -72,7 +72,9 @@ export const ProjectFolder: React.FC<ProjectFolderProps> = ({ project, index, is
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 rounded-full hover:bg-slate-700/50 transition-colors"
+                    className={`p-2 rounded-full transition-colors ${
+                      isDarkMode ? 'hover:bg-slate-700/50' : 'hover:bg-gray-200/80'
+                    }`}
                     onClick={(e) => e.stopPropagation()}
                   >
                     <Github size={18} className={isDarkMode ? 'text-gray-300' : 'text-gray-700'} />
@@ -83,7 +85,9 @@ export const ProjectFolder: React.FC<ProjectFolderProps> = ({ project, index, is
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 rounded-full hover:bg-slate-700/50 transition-colors"
+                    className={`p-2 rounded-full transition-colors ${
+                      isDarkMode ? 'hover:bg-slate-700/50' : 'hover:bg-gray-200/80'
+                    }`}
                     onClick={(e) => e.stopPropagation()}
                   >
                     <ExternalLink size={18} className={isDarkMode ? 'text-gray-300' : 'text-gray-700'} />
@@ -96,23 +100,35 @@ export const ProjectFolder: React.FC<ProjectFolderProps> = ({ project, index, is
               {project.name}
             </h3>
 
-            <p className={`text-sm mb-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-              {project.description}
-            </p>
+            <div className="relative flex-1 min-h-0">
+              <div className="h-full overflow-y-auto pr-2 pb-6">
+                <p className={`text-sm mb-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                  {project.description}
+                </p>
 
-            <div className="flex flex-wrap gap-2">
-              {project.tech.map((tech, i) => (
-                <span
-                  key={i}
-                  className={`text-xs px-2 py-1 rounded ${
-                    isDarkMode
-                      ? 'bg-slate-700/50 text-gray-300'
-                      : 'bg-gray-100 text-gray-700'
-                  }`}
-                >
-                  {tech}
-                </span>
-              ))}
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((tech, i) => (
+                    <span
+                      key={i}
+                      className={`text-xs px-2 py-1 rounded ${
+                        isDarkMode
+                          ? 'bg-slate-700/50 text-gray-300'
+                          : 'bg-gray-100 text-gray-700'
+                      }`}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div
+                className={`pointer-events-none absolute bottom-0 left-0 right-2 h-10 ${
+                  isDarkMode
+                    ? 'bg-gradient-to-t from-slate-800/95 to-transparent'
+                    : 'bg-gradient-to-t from-white/95 to-transparent'
+                }`}
+              />
             </div>
           </div>
         </motion.div>
