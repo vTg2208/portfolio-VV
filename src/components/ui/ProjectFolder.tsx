@@ -41,7 +41,7 @@ export const ProjectFolder: React.FC<ProjectFolderProps> = ({ project, index, is
       onHoverStart={() => setIsOpen(true)}
       onHoverEnd={() => setIsOpen(false)}
     >
-      <div className="relative w-full h-64 cursor-pointer perspective-1000">
+      <div className="relative w-full h-80 cursor-pointer perspective-1000">
         {/* Folder Base */}
         <motion.div
           className={`absolute inset-0 rounded-lg overflow-hidden ${
