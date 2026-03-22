@@ -18,15 +18,9 @@ export const SKILLS: Skill = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'AmritaAttend',
-    description: 'Attendance for faculty at Amrita Vishwa Vidyapeetham using phone fingerprint authentication.',
-    tech: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Flutter'],
-    link: 'https://vTg2208.github.io/AmritaAttend'
-  },
-   {
     name: 'Owezy',
     description:
-      'A comprehensive expense sharing application for group trips with real-time balance tracking, receipt uploads, group chat, and simplified settlements.',
+    'A comprehensive expense sharing application for group trips with real-time balance tracking, receipt uploads, group chat, and simplified settlements.',
     tech: ['React','TypeScript','Vite','Tailwind CSS','Node.js','Express','MongoDB','Firebase Authentication'],
     link: 'https://owezy.vercel.app/'
   },
@@ -35,6 +29,24 @@ export const PROJECTS: Project[] = [
     description: 'AI-powered travel recommendation assistant that provides personalized destination suggestions and trip planning insights.',
     tech: ['Google Gemini API', 'Express', 'Heroicons', 'React', 'Tailwind CSS'],
     link: 'https://vTg2208.github.io/travel-buddy'
+  },
+  {
+    name: 'GradeAppeal System',
+    description: 'A revaluation portal that makes paper review requests, approvals, and expert evaluations simple and secure.',
+    tech: ['React', 'Node.js', 'Express.js', 'MySQL', 'JWT', 'Google Authenticator', 'AES-256', 'REST APIs'],
+    link: 'https://github.com/vTg2208/Paper-Management-System'
+  },
+  {
+    name: 'Disaster Response Management System',
+    description: 'A disaster-planning engine that prioritizes emergencies, finds fast routes, and allocates resources across cities.',
+    tech: ['Python', 'AVL Tree', 'Graph', 'Heap', 'Dijkstra', 'Ford-Fulkerson'],
+    link: 'https://github.com/vTg2208/disaster-management-system'
+  },
+  {
+    name: 'AmritaAttend',
+    description: 'Attendance for faculty at Amrita Vishwa Vidyapeetham using phone fingerprint authentication.',
+    tech: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Flutter'],
+    link: 'https://vTg2208.github.io/AmritaAttend'
   }
 ];
 
