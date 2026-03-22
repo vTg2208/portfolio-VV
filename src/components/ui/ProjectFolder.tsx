@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Folder, ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github } from 'lucide-react';
 
 interface FolderProject {
   name: string;
@@ -65,7 +65,6 @@ export const ProjectFolder: React.FC<ProjectFolderProps> = ({ project, index, is
           {/* Content */}
           <div className="h-[calc(100%-2rem)] p-6 flex flex-col">
             <div className="flex items-center justify-between mb-3">
-              <Folder size={32} style={{ color }} />
               <div className="flex gap-2">
                 {project.github && (
                   <a
