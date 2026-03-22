@@ -63,7 +63,7 @@ export const ProjectFolder: React.FC<ProjectFolderProps> = ({ project, index, is
           />
 
           {/* Content */}
-          <div className="p-6">
+          <div className="h-[calc(100%-2rem)] overflow-y-auto p-6 pr-4">
             <div className="flex items-center justify-between mb-3">
               <Folder size={32} style={{ color }} />
               <div className="flex gap-2">
