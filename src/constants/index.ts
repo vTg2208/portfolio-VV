@@ -83,6 +83,14 @@ export const BLOG_INFO = {
       date: '2025-12-15',
       readTime: '5 min read',
       tags: ['Machine Learning', 'Artificial Intelligence', 'AI Engineering', 'AI Infrastructure', 'Large Language Models']
+    },
+    {
+      title: 'Anthropic Accidentally Leaked Claude Code’s Source Code — And the Internet Had a Field Day',
+      description: 'A deep dive into how a packaging mistake exposed Claude Code internals, what developers uncovered in the leaked source, and why the fallout matters for AI tooling and security.',
+      url: 'https://medium.com/@theegelavishnuvardhan22/anthropic-accidentally-leaked-claude-codes-source-code-and-the-internet-had-a-field-day-2d5a9ec1cd4c',
+      date: '2026-04-06',
+      readTime: '11 min read',
+      tags: ['Artificial Intelligence', 'Claude Code', 'Cybersecurity', 'Open Source', 'Tech']
     }
     // Add more blogs as needed
   ]
