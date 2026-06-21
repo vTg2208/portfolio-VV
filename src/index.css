@@ -18,8 +18,16 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  min-height: 100vh;
+  background: transparent;
 }
 
 html {
   scroll-behavior: smooth;
+  min-height: 100%;
+  background: #020617;
+}
+
+#root {
+  min-height: 100vh;
 }

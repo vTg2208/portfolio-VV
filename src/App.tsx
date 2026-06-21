@@ -19,7 +19,16 @@ const Portfolio: React.FC = () => {
   const { activeSection, scrollY } = useScrollSpy(['home', 'about', 'skills', 'projects', 'experience', 'blogs', 'github', 'contact']);
 
   return (
-    <div className={`min-h-screen ${themeStyles.background} ${themeStyles.text} transition-colors duration-300`}>
+    <div className={`relative min-h-screen overflow-x-hidden ${themeStyles.text} transition-colors duration-300`}>
+      <div
+        className="fixed inset-0 -z-20 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/bg.png')",
+          backgroundAttachment: 'fixed',
+        }}
+        aria-hidden="true"
+      />
+      <div className="fixed inset-0 -z-10 bg-slate-950/60" aria-hidden="true" />
       <ScrollProgress />
       
       <Navigation 
@@ -28,17 +37,19 @@ const Portfolio: React.FC = () => {
         isDarkMode={isDarkMode}
         toggleTheme={toggleTheme}
       />
-      
-      <Hero themeStyles={themeStyles} scrollY={scrollY} isDarkMode={isDarkMode}/>
-      <About themeStyles={themeStyles} />
-      <Skills themeStyles={themeStyles} />
-      <Projects themeStyles={themeStyles} />
-      <Experience themeStyles={themeStyles} />
-      <Blogs themeStyles={themeStyles} />
-      <GitHubActivity themeStyles={themeStyles} />
-      <Contact themeStyles={themeStyles} />
-      <Footer themeStyles={themeStyles} isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-      <FloatingMenu themeStyles={themeStyles} />
+
+      <div className="relative z-10">
+        <Hero themeStyles={themeStyles} scrollY={scrollY} isDarkMode={isDarkMode}/>
+        <About themeStyles={themeStyles} />
+        <Skills themeStyles={themeStyles} />
+        <Projects themeStyles={themeStyles} />
+        <Experience themeStyles={themeStyles} />
+        <Blogs themeStyles={themeStyles} />
+        <GitHubActivity themeStyles={themeStyles} />
+        <Contact themeStyles={themeStyles} />
+        <Footer themeStyles={themeStyles} isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+        <FloatingMenu themeStyles={themeStyles} />
+      </div>
     </div>
   );
 };
