@@ -1,6 +1,5 @@
 import React from 'react';
 import { ChevronDown, Code, Rocket, BrainCircuit } from 'lucide-react';
-import DotGrid from '../common/DotGrid';
 import { InteractiveTerminal } from '../interactive/InteractiveTerminal';
 import GlassSurface from '../ui/GlassSurface';
 import { FlipText } from '../ui/FlipText';
@@ -22,13 +21,6 @@ export const Hero: React.FC<HeroProps> = ({ themeStyles, scrollY, isDarkMode }) 
       className={`min-h-screen flex flex-col relative overflow-hidden ${themeStyles.background}`}
       style={{ transform: `translateY(${Math.min(scrollY * 0.5, 100)}px)` }}
     >
-      <DotGrid
-        dotSize={5}
-        gap={24}
-        baseColor={isDarkMode ? "#ffffff" : "#000000"}
-        style={{ position: 'absolute', inset: 0, opacity: 0.15 }}
-      />
-      
       {/* Top Section - Name and Subtitle */}
       <div className="relative z-10 pt-24 pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

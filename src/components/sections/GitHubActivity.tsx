@@ -103,7 +103,10 @@ export const GitHubActivity: React.FC<GitHubActivityProps> = ({ themeStyles }) =
     return (
       <section className={`py-20 ${themeStyles.sectionBackground} pt-40 transition-colors duration-300`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12">Recent GitHub Activity</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-12">
+            <span className="font-bold">Recent GitHub </span>
+            <span className="text-blue-600 font-extrabold italic">Activity</span>
+          </h2>
           <div className="space-y-4">
             {Array.from({ length: 5 }).map((_, i) => (
               <div key={i} className={`${themeStyles.cardBackground} p-4 rounded-lg animate-pulse`}>
@@ -122,7 +125,8 @@ export const GitHubActivity: React.FC<GitHubActivityProps> = ({ themeStyles }) =
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 flex items-center">
           <Github className="mr-3" size={32} />
-          Recent GitHub Activity
+          <span className="font-bold">Recent GitHub </span>
+          <span className="text-blue-600 font-extrabold italic">Activity</span>
         </h2>
         
         <div className="grid md:grid-cols-2 gap-6">

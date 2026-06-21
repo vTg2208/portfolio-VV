@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { Mail, Phone, Send, CheckCircle, AlertCircle, Github, Linkedin } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { ThemeStyles, ContactFormData } from '../../types';
 import { CONTACT_INFO } from '../../constants';
@@ -109,7 +109,10 @@ export const Contact: React.FC<ContactProps> = ({ themeStyles }) => {
   return (
     <section id="contact" className={`py-20 ${themeStyles.sectionBackground} pt-32 transition-colors duration-300`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12">Contact</h2>
+        <h2 className="text-3xl md:text-4xl mb-12">
+          <span className="font-bold">Got an idea in </span>
+          <span className="text-blue-600 font-extrabold italic">mind</span>
+        </h2>
         <div className="grid md:grid-cols-2 gap-8">
           <div>
             <p className={`${themeStyles.secondaryText} mb-6`}>
@@ -130,6 +133,24 @@ export const Contact: React.FC<ContactProps> = ({ themeStyles }) => {
               >
                 <Phone size={20} className="text-blue-500" />
                 <span>{CONTACT_INFO.phone}</span>
+              </a>
+              <a
+                href={CONTACT_INFO.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center space-x-3 p-3 rounded-lg ${themeStyles.cardBackground} ${themeStyles.secondaryText} ${themeStyles.linkHover} transition-colors`}
+              >
+                <Github size={20} className="text-blue-500" />
+                <span>GitHub</span>
+              </a>
+              <a
+                href={CONTACT_INFO.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center space-x-3 p-3 rounded-lg ${themeStyles.cardBackground} ${themeStyles.secondaryText} ${themeStyles.linkHover} transition-colors`}
+              >
+                <Linkedin size={20} className="text-blue-500" />
+                <span>LinkedIn</span>
               </a>
             </div>
           </div>
